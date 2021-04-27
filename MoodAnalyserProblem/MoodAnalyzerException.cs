@@ -14,7 +14,9 @@ namespace MoodAnalyserProblem
             NULL_EXCEPTION, EMPTY_EXCEPTION,
             CLASS_NOT_FOUND,
             CONSTRUCTOR_NOT_FOUND,
-            NO_SUCH_METHOD
+            NO_SUCH_METHOD,
+            NO_SUCH_FEILD,
+            NO_SUCH_FIELD
         }
         public MoodAnalyzerException(ExceptionType type, string message) : base(message)  //parameterized constructor 
         {

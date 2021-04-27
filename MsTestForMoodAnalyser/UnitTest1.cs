@@ -182,7 +182,7 @@ namespace MsTestForMoodAnalyser
         }
 
         /// <summary>
-        ///  TC 5.2- Given Class Name When Improper Should Throw MoodAnalysisException.
+        ///  TC 5.2- Given Class Name When Improper Should Throw MoodAnalysisException
         /// </summary>
         [TestMethod]
         public void GivenInvalidClassName_ShouldThrow_MoodAnalyserException_Of_ParameterisedConstructor()
@@ -198,7 +198,7 @@ namespace MsTestForMoodAnalyser
             }
         }
         /// <summary>
-        ///TC 5.3 Given Invalid constructor name should throw MoodAnalyserException.
+        ///TC 5.3 Given Invalid constructor name should throw MoodAnalyserException
         /// </summary> 
         [TestMethod]
         public void GivenInvalidConstructorName_ShouldThrow_MoodAnalyserException_Of_ParameterizedConstructor()
@@ -235,14 +235,57 @@ namespace MsTestForMoodAnalyser
             }
             obj.Equals(expected);
         }
+        /// <summary>
+        /// TC7.1-Set Happy Message with Reflector Should Return HAPPY
+        /// </summary>
+        [TestMethod]
+        public void GivenMessageDynamically_returnMessage()
+        {
+            string expected = "Iam so happy";
+
+            string actual = MoodAnalyzerFactory.SetField("Iam so happy", "message");
+            Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        //TC 7.2- Set Field When Improper Should Throw Exception with No Such Field
+        /// </summary>
+        [TestMethod]
+        public void GivenImproperFieldName_ThrowNoSuchFieldException()
+        {
+
+            string expected = "No Such Field";
+            try
+            {
+                MoodAnalyzerFactory.SetField("Iam so happy", "wrongMessage");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual(expected, ex.Message);
+            }
+
+        }
+        /// <summary>
+        /// TC 7.3- Setting Null Message with Reflector Should Throw Exception
+        /// </summary>
+
+        [TestMethod]
+        public void GivenNullMessage_ThrowException()
+        {
+            string expected = "Mood should not be NULL";
+
+            try
+            {
+                MoodAnalyzerFactory.SetField(null, "message");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual(expected, ex.Message);
+            }
+
+        }
     }
        
-
-
-
-
-
-    }
 }
 
        

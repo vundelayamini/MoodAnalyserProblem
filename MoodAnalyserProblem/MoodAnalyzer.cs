@@ -8,6 +8,9 @@ namespace MoodAnalyserProblem
     {
         public string message;  //instance variable      
 
+        public MoodAnalyzer()
+        {
+        }
 
         public MoodAnalyzer(string message) //parameterized constructor 
         {
