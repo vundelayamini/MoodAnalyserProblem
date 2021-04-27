@@ -16,14 +16,14 @@ namespace MoodAnalyserProblem
             string pattern = @"." + constructor + "$";
             Match result = Regex.Match(className, pattern); //regex predefine class
 
-            if (result.Success) 
+            if (result.Success)
             {
                 try
                 {    //constructor and classname both are matching
 
                     Assembly assembly = Assembly.GetExecutingAssembly();
                     Type moodAnalyzerType = assembly.GetType(className);
-                    var res= Activator.CreateInstance(moodAnalyzerType); //Activator class
+                    var res = Activator.CreateInstance(moodAnalyzerType); //Activator class
                     return res;
                 }
                 catch (NullReferenceException)
@@ -59,6 +59,24 @@ namespace MoodAnalyserProblem
             {
                 throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.CLASS_NOT_FOUND, "Class not found");
 
+            }
+        }
+        // UC6:- Use Reflection to invoke Method –analyseMood 
+        public string InvokeAnalyzerMethod(string message, string methodName)
+        {
+            try
+            {
+                Type type = typeof(MoodAnalyzer);
+
+                MethodInfo analyzerMoodInfo = type.GetMethod(methodName);
+                MoodAnalyzerFactory Factory = new MoodAnalyzerFactory();
+                object moodAnalyzerObject = Factory.CreateMoodAnalyzerParameterObject("MoodAnalyzerProblem.MoodAnalyzer", "MoodAnalyzer", message);
+                object mood = analyzerMoodInfo.Invoke(moodAnalyzerObject, null);
+                return mood.ToString();
+            }
+            catch (NullReferenceException)
+            {
+                throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.NO_SUCH_METHOD, "Method is not found");
             }
         }
     }

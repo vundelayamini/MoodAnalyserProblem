@@ -214,7 +214,29 @@ namespace MsTestForMoodAnalyser
                 Assert.AreEqual(expected, ex.Message);
             }
         }
+        /// <summary>
+        /// TC6.1-Given Happy should return happy
+        /// </summary>
+        [TestMethod]
+        public void Given_HappyMood_ShouldReturn_Happy()
+        {
+            string Message = "Happy";
+            MoodAnalyzer expected = new MoodAnalyzer("I am in happy mood");
+            object obj = null;
+            try
+            {
+                MoodAnalyserFactory Factory = new MoodAnalyserFactory();
+                obj = Factory.InvokeAnalyzerMethod(Message, "Analyzer");
+            }
+            catch (Exception ex)
+            {
 
+                throw new Exception(ex.Message);
+            }
+            obj.Equals(expected);
+        }
+    }
+       
 
 
 
