@@ -32,5 +32,34 @@ namespace MsTestForMoodAnalyser
             //Assert
             Assert.AreEqual(expected, actual);  
         }
+        //UC2-Handle Exception if user provides invalid mood
+        [TestMethod]
+        public void Given_Nullmood_Expecting_Exception_Result()  
+        {
+            //Arrange
+            MoodAnalyzer mood = new MoodAnalyzer(null); 
+            string expected = "Object reference not set to an instance of an object.";
+            
+            //Act
+            string actual = mood.Analyzer();    
+            //Assert
+            Assert.AreEqual(expected, actual);  
+        }
+
+        //TC 2.1:- Given Null Mood Should Return Happy.
+                   
+         [TestMethod]
+        public void Given_Nullmood_Expecting_happy_Result()  
+        {
+            //Arrange
+            MoodAnalyzer mood = new MoodAnalyzer(null); //Create object
+            string expected = "happy";
+            //Act
+            string actual = mood.Analyzer();    
+            //Assert
+            Assert.AreEqual(expected, actual); 
+
+
+        }
     }
 }
