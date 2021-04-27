@@ -6,8 +6,10 @@ using System.Text.RegularExpressions;
 
 namespace MoodAnalyserProblem
 {
-    class MoodAnalyserFactory
+    class MoodAnalyzerFactory
     {
+        //UC4- Use Reflection to Create MoodAnalyser with default Constructor
+
         public object CreateMoodAnalyzerObject(string className, string constructor)
         {
             //MoodAnalyzerProblem.MoodAnalyzer
@@ -32,6 +34,31 @@ namespace MoodAnalyserProblem
             else
             {
                 throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.CONSTRUCTOR_NOT_FOUND, "constructor not found");
+            }
+        }
+        //UC5-Use Reflecion to create moodAnalyser with parameter constructor
+        public Object CreateMoodAnalyzerParameterObject(string className, string constructorName, string message)
+        {
+            Type type = typeof(MoodAnalyzer);
+
+            if (type.Name.Equals(className) || type.FullName.Equals(className))
+            {
+
+                if (type.Name.Equals(constructorName))
+                {
+                    ConstructorInfo constructorObject = type.GetConstructor(new[] { typeof(string) });
+                    Object instance = constructorObject.Invoke(new object[] { message });
+                    return instance;
+                }
+                else
+                {
+                    throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.NO_SUCH_METHOD, "Constructor not found");
+                }
+            }
+            else
+            {
+                throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.CLASS_NOT_FOUND, "Class not found");
+
             }
         }
     }

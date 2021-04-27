@@ -9,9 +9,11 @@ namespace MsTestForMoodAnalyser
     public class UnitTest1
     {
         private object MoodAnalyserFactory;
-
+        /// <summary>
+        /// TC1.1Given sad mood should return sad
+        /// </summary>
         [TestMethod]
-
+        
         public void GivenSadMood_ShouldReturnSAD()
         {
             //Arrange
@@ -24,7 +26,9 @@ namespace MsTestForMoodAnalyser
             Assert.AreEqual(expected, actual);
         }
 
-
+        /// <summary>
+        /// TC1.2-Given happy mood should return happy 
+        /// </summary>
         [TestMethod]
         public void Given_Happymood_Expecting_Happy_Result()
         {
@@ -49,8 +53,9 @@ namespace MsTestForMoodAnalyser
             //Assert
             Assert.AreEqual(expected, actual);
         }
-
-        //TC 2.1:- Given Null Mood Should Return Happy.
+        /// <summary>
+        ///TC 2.1:- Given Null Mood Should Return Happy
+        /// </summary>
 
         [TestMethod]
         public void Given_Nullmood_Expecting_happy_Result()
@@ -65,7 +70,9 @@ namespace MsTestForMoodAnalyser
 
 
         }
-        // TC 3.1:- NULL Given NULL Mood Should Throw MoodAnalysisException
+        /// <summary>
+        ///  TC 3.1:- NULL Given NULL Mood Should Throw MoodAnalysisException
+        /// </summary>
         [TestMethod]
         public void Given_Nullmood_Using_CustomExpection_Return_Null()
         {
@@ -84,8 +91,9 @@ namespace MsTestForMoodAnalyser
                 Assert.AreEqual("Mood should not be null", ex.Message);
             }
         }
-
-        // TC 3.2- Given Empty Mood Should Throw  MoodAnalysisException 
+        /// <summary>
+        /// TC 3.2- Given Empty Mood Should Throw  MoodAnalysisException 
+        /// </summary>
 
         [TestMethod]
 
@@ -108,7 +116,9 @@ namespace MsTestForMoodAnalyser
                 Assert.AreEqual("Mood should not be empty", ex.Message);
             }
         }
-        //TC 4.1:- Given MoodAnalyser Class Name Should Return MoodAnalyser Object
+        /// <summary>
+        ///TC 4.1:- Given MoodAnalyser Class Name Should Return MoodAnalyser Object
+        /// </summary>
         [TestMethod]
         public void Given_MoodAnalyser_ClassName_ShouldReturn_MoodAnalyseObject()
         {
@@ -116,8 +126,9 @@ namespace MsTestForMoodAnalyser
             object obj = MoodAnalyzerFactory.CreateMoodAnalyseMethod("MoodAnalyzer.MoodAnalyser", "MoodAnalyser");
             expected.Equals(obj);
         }
-
-        //TC 4.2- Given Class Name When Improper Should Throw MoodAnalysisException
+        /// <summary>
+        /// TC 4.2- Given Class Name When Improper Should Throw MoodAnalysisException
+        /// </summary>
 
         [TestMethod]
         public void GivenInvalidClassName_ShouldThrow_MoodAnalyserException()
@@ -132,7 +143,9 @@ namespace MsTestForMoodAnalyser
                 Assert.AreEqual(expected, ex.Message);
             }
         }
-        //TC 4.3- Given Class When Constructor Not Proper Should Throw MoodAnalysisException.
+        /// <summary>
+        ///TC 4.3- Given Class When Constructor Not Proper Should Throw MoodAnalysisException.
+        /// </summary>
 
         [TestMethod]
         public void GivenClass_WhenNotProper_Constructor_ShouldThrow_MoodAnalyserException()
@@ -147,6 +160,66 @@ namespace MsTestForMoodAnalyser
                 Assert.AreEqual(expected, ex.Message);
             }
         }
+        /// <summary>
+        ///TC 5.1:- Given MoodAnalyser When Proper Return MoodAnalyser Object.
+        /// </summary>
+        [TestMethod]
+        public void GivenMoodAnalyser_WhenCorrect_Return_MoodAnalyseObject()
+        {
+            string message = "I am in happy mood";
+            MoodAnalyzer expected = new MoodAnalyzer("I am in happy mood"); //Create object and arrange 
+            object obj = null;
+
+            try
+            {
+                MoodAnalyzerFactory factory = new MoodAnalyzerFactory();
+                obj = factory.CreateMoodAnalyzerParameterObject("MoodAnalyzerProblem.MoodAnalyzer", "MoodAnalyzer", message);
+            }
+            catch (Exception ex)
+            {
+               obj.Equals(expected);
+            }
+        }
+
+        /// <summary>
+        ///  TC 5.2- Given Class Name When Improper Should Throw MoodAnalysisException.
+        /// </summary>
+        [TestMethod]
+        public void GivenInvalidClassName_ShouldThrow_MoodAnalyserException_Of_ParameterisedConstructor()
+        {
+            string expected = "Class not found";
+            try
+            {
+                object obj = MoodAnalyzerFactory.CreatedMoodAnalyserUsingParameterizedConstructor("MoodAnalyzer.sampleClass", "MoodAnalyser", "HAPPY");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual(expected, ex.Message);
+            }
+        }
+        /// <summary>
+        ///TC 5.3 Given Invalid constructor name should throw MoodAnalyserException.
+        /// </summary> 
+        [TestMethod]
+        public void GivenInvalidConstructorName_ShouldThrow_MoodAnalyserException_Of_ParameterizedConstructor()
+        {
+            string expected = "Constructor is not found";
+            try
+            {
+                object obj = MoodAnalyzerFactory.CreatedMoodAnalyserUsingParameterizedConstructor("MoodAnalyzer.MoodAnalyser", "sampleClass", "HAPPY");
+            }
+            catch (Exception ex)
+            {
+                //Assert
+                Assert.AreEqual(expected, ex.Message);
+            }
+        }
+
+
+
+
+
+
     }
 }
 
