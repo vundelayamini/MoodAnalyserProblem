@@ -9,3 +9,4 @@ C:\Users\mahesh\source\repos\MoodAnalyserProblem\MoodAnalyserProblem\obj\Debug\n
 C:\Users\mahesh\source\repos\MoodAnalyserProblem\MoodAnalyserProblem\obj\Debug\netcoreapp2.1\MoodAnalyserProblem.dll
 C:\Users\mahesh\source\repos\MoodAnalyserProblem\MoodAnalyserProblem\obj\Debug\netcoreapp2.1\MoodAnalyserProblem.pdb
 C:\Users\mahesh\source\repos\MoodAnalyserProblem\MoodAnalyserProblem\obj\Debug\netcoreapp2.1\MoodAnalyserProblem.genruntimeconfig.cache
+C:\Users\mahesh\source\repos\MoodAnalyserProblem\MoodAnalyserProblem\obj\Debug\netcoreapp2.1\MoodAnalyserProblem.csprojAssemblyReference.cache

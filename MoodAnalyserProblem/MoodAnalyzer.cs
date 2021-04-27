@@ -19,6 +19,13 @@ namespace MoodAnalyserProblem
         {
             try
             {
+                 //UC 3 Inform user if he entered Invalid Mood
+
+                if (this.message.Equals(string.Empty))
+                {
+
+                    throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.EMPTY_EXCEPTION, "Mood should not be empty");
+                }
                 if (this.message.ToLower().Contains("happy"))
                 {
                     return "happy";
@@ -28,9 +35,11 @@ namespace MoodAnalyserProblem
                     return "sad";
                 }
             }
-            catch(NullReferenceException ex)
+
+            catch (NullReferenceException ex)
             {
                 return ex.Message;
+                throw new MoodAnalyzerException(MoodAnalyzerException.ExceptionType.NULL_EXCEPTION, "Mood should not be null");
             }
 
         }
