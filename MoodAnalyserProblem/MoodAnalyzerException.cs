@@ -11,7 +11,9 @@ namespace MoodAnalyserProblem
 
         public enum ExceptionType  
         {
-            NULL_EXCEPTION, EMPTY_EXCEPTION
+            NULL_EXCEPTION, EMPTY_EXCEPTION,
+            CLASS_NOT_FOUND,
+            CONSTRUCTOR_NOT_FOUND
         }
         public MoodAnalyzerException(ExceptionType type, string message) : base(message)  //parameterized constructor and also using bsae method
         {
